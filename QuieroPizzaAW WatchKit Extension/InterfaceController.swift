@@ -12,18 +12,36 @@ import Foundation
 
 class InterfaceController: WKInterfaceController {
 
-    @IBOutlet var tamaño: WKInterfacePicker!
-    
-    var listaTamaño: [(String, String)] = [
-        ("Chica", "C"),
-        ("Mediana", "M"),
-        ("Grande", "G")
-    ]
-    
-    var tamañoSeleccionado : (String, String)? = nil
+
+    var valorContexto : Orden? = nil
+    var tamañoSeleccionado : String = ""
+    var nombreControlador : String = "TipoMasa"
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
+        
+        if context != nil {
+            
+            let c : Orden? = (context as! Orden)
+            
+            if c != nil {
+                valorContexto = c
+                
+                if !(c?.nombreControlador)!.isEmpty {
+                    nombreControlador = (c?.nombreControlador)!
+                }
+                
+            }
+
+        } else {
+            
+            valorContexto?.masa = nil
+            valorContexto?.queso = nil
+            valorContexto?.ingredientes = nil
+        }
+        
+        
+        
         
         // Configure interface objects here.
     }
@@ -31,7 +49,7 @@ class InterfaceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
-        let pickerItems :[WKPickerItem] = listaTamaño.map{
+        /*let pickerItems :[WKPickerItem] = listaTamaño.map{
             let pickerItem = WKPickerItem()
             
             pickerItem.title = $0.0
@@ -42,6 +60,7 @@ class InterfaceController: WKInterfaceController {
         tamaño.setItems(pickerItems)
         tamaño.setSelectedItemIndex(0)
         tamañoSeleccionado = listaTamaño[0]
+        */
        
     }
 
@@ -50,7 +69,7 @@ class InterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
 
-    @IBAction func pickerSelectedItemChanged(value: Int) {
+   /* @IBAction func pickerSelectedItemChanged(value: Int) {
         
         tamañoSeleccionado = listaTamaño[value]
     }
@@ -63,6 +82,33 @@ class InterfaceController: WKInterfaceController {
         }
         pushControllerWithName("TipoMasa", context: valorContexto)
         
+    }*/
+    
+    @IBAction func presionoBotonChica() {
+        tamañoSeleccionado = "Chica"
+        transitarPantalla()
     }
+    
+    @IBAction func presionoMediana() {
+        tamañoSeleccionado = "Mediana"
+        transitarPantalla()
+    }
+    
+    @IBAction func presionoGrande() {
+        tamañoSeleccionado = "Grande"
+        transitarPantalla()
+    }
+    
+    func transitarPantalla() {
+        
+        if(!tamañoSeleccionado.isEmpty) {
+            
+            valorContexto = Orden(tamaño: Taman_o(d: tamañoSeleccionado, v: tamañoSeleccionado )
+                , masa: valorContexto?.masa, queso: valorContexto?.queso, ingredientes: valorContexto?.ingredientes, nombreControlador: "")        }
+        pushControllerWithName(nombreControlador, context: valorContexto)
+        
+    }
+    
+
     
 }

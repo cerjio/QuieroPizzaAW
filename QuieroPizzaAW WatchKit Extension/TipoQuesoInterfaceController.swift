@@ -12,39 +12,30 @@ import Foundation
 
 class TipoQuesoInterfaceController: WKInterfaceController {
     
-    @IBOutlet var tipoQueso: WKInterfacePicker!
-    
-    var listaTipoQueso: [(String, String)] = [
-        ("Mozarela", "M"),
-        ("Cheddar", "C"),
-        ("Parmesano", "P"),
-        ("Sin queso", "S")
-    ]
-    
-    var tamaño : String? = nil
-    var tipoMasa : String? = nil
-
-    var tipoQuesoSeleccionado : (String, String)? = nil
-
+    var valorContexto : Orden? = nil
+    var quesoSeleccionado : String = ""
+    var nombreControlador : String = "Ingredientes"
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        let c = context as! TipoMasa
-        tamaño = c.tamaño
-        tipoMasa = c.descripcion
-        
-        let pickerItems :[WKPickerItem] = listaTipoQueso.map{
-            let pickerItem = WKPickerItem()
+        if context != nil {
             
-            pickerItem.title = $0.0
-            pickerItem.caption = $0.1
+            let c : Orden? = (context as! Orden)
             
-            return pickerItem
+            if c != nil {
+                valorContexto = c
+                
+                if !(c?.nombreControlador)!.isEmpty {
+                    nombreControlador = (c?.nombreControlador)!
+                }
+                
+            }
+            
+        } else {
+            
+            valorContexto?.ingredientes = nil
         }
-        tipoQueso.setItems(pickerItems)
-        tipoQueso.setSelectedItemIndex(0)
-        tipoQuesoSeleccionado = listaTipoQueso[0]
 
         
         
@@ -61,18 +52,32 @@ class TipoQuesoInterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
     
-    @IBAction func pickerSelectedItemChanged(value: Int) {
-         tipoQuesoSeleccionado = listaTipoQueso[value]
+    @IBAction func seleccionoMozarela() {
+        quesoSeleccionado = "Mozarela"
+        transitarPantalla()
     }
     
-    @IBAction func seleccionarIngredientes() {
-        var valorContexto : AnyObject? = nil
-        if(tipoQuesoSeleccionado != nil) {
-            
-            valorContexto = TipoQueso(d: tipoQuesoSeleccionado!.0, v: tipoQuesoSeleccionado!.1, t: tamaño!, tm: tipoMasa!)
-        }
-
-        pushControllerWithName("Ingredientes", context: valorContexto)
+    @IBAction func seleccionoChedar() {
+        quesoSeleccionado = "Chedar"
+        transitarPantalla()
     }
+    
+    @IBAction func seleccionoParmesano() {
+        quesoSeleccionado = "Parmesano"
+        transitarPantalla()
+    }
+    
+    
+    func transitarPantalla() {
+        
+        if(!quesoSeleccionado.isEmpty) {
+            
+            valorContexto = Orden(tamaño: valorContexto?.tamaño
+                , masa: valorContexto?.masa, queso: TipoQueso(d: quesoSeleccionado, v: quesoSeleccionado), ingredientes: valorContexto?.ingredientes, nombreControlador: "")        }
+        pushControllerWithName(nombreControlador, context: valorContexto)
+        
+    }
+
+    
 
 }

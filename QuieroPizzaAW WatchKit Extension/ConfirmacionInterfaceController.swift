@@ -25,41 +25,36 @@ class ConfirmacionInterfaceController: WKInterfaceController {
     var ingredientes : String? = nil
     var faltantes : [String] = []
     
+    
+    
+    var valorContexto : Orden? = nil
+    var quesoSeleccionado : String = ""
+    var nombreControlador : String = "Cocinar"
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        let c = context as! Ingredientes
-        tamaño = c.tamaño
-        tipoMasa = c.tipoMasa
-        tipoQueso = c.tipoQueso
         
-        if c.ingredientesSeleccionados.count > 0 {
+        if context != nil {
             
-            ingredientes = c.ingredientesSeleccionados.joinWithSeparator(",")
-        } else {
-            ingredientes = nil
-        }
-        
-
-        tamañoEtiqueta.setText(tamaño)
-        masaEtiqueta.setText(tipoMasa)
-        quesoEtiqueta.setText(tipoQueso)
-        ingredientesEtiqueta.setText(ingredientes)
-        
-        if (tamaño?.isEmpty == nil) {
-            faltantes.append("Tamaño")
-        }
-        
-        if (tipoMasa?.isEmpty == nil) {
-            faltantes.append("Tipo Masa")
-        }
-        
-        if tipoQueso?.isEmpty == nil {
-            faltantes.append("Tipo Queso")
-        }
-        
-        if ingredientes?.isEmpty == nil {
-            faltantes.append("Ingredientes")
+            let c : Orden? = (context as! Orden)
+            
+            if c != nil {
+                valorContexto = c
+                
+                tamañoEtiqueta.setText(valorContexto?.tamaño?.descripcion)
+                masaEtiqueta.setText(valorContexto?.masa?.descripcion)
+                quesoEtiqueta.setText(valorContexto?.queso?.descripcion)
+                ingredientesEtiqueta.setText(valorContexto?.ingredientes?.ingredientesSeleccionados.joinWithSeparator(","))
+                if !(c?.nombreControlador)!.isEmpty {
+                    nombreControlador = (c?.nombreControlador)!
+                }
+                
+                
+                if valorContexto?.ingredientes?.ingredientesSeleccionados.count <= 0 {
+                    faltantes.append("Ingredientes")
+                }
+            }
         }
         
         // Configure interface objects here.
@@ -85,18 +80,27 @@ class ConfirmacionInterfaceController: WKInterfaceController {
                     
             }
                     
-            presentAlertControllerWithTitle("Ooops", message: "Falta: " + faltantes.joinWithSeparator(","), preferredStyle: WKAlertControllerStyle.Alert, actions: [okAction])
+            presentAlertControllerWithTitle("Ooops", message: "Faltan: " + faltantes.joinWithSeparator(","), preferredStyle: WKAlertControllerStyle.Alert, actions: [okAction])
             
         } else {
             
             let valor: AnyObject? = nil
             
-            pushControllerWithName("Cocinar", context: valor)
+            presentControllerWithName("Cocinar", context: valor)
             
         }
         
     }
     
+    @IBAction func cambiarOrden() {
+        
+        
+        valorContexto = Orden(tamaño: valorContexto?.tamaño
+            , masa: valorContexto?.masa, queso: valorContexto?.queso, ingredientes: valorContexto?.ingredientes, nombreControlador: "")
+        
+        pushControllerWithName("CambioOrden", context: valorContexto)
+        
+    }
     
 
 }

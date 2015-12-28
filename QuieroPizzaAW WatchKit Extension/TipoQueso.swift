@@ -12,13 +12,9 @@ class TipoQueso: NSObject {
 
     var descripcion : String = ""
     var valor : String = ""
-    var tamaño : String? = nil
-    var tipoMasa : String? = nil
     
-    init(d : String, v : String, t: String, tm: String) {
+    init(d : String, v : String) {
         descripcion = d
         valor = v
-        tamaño = t
-        tipoMasa = tm
     }
 }

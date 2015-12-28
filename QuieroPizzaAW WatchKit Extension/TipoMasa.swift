@@ -12,12 +12,10 @@ class TipoMasa: NSObject {
     
     var descripcion : String = ""
     var valor : String = ""
-    var tamaño : String? = nil
     
-    init(d : String, v : String, t: String) {
+    init(d : String, v : String) {
         descripcion = d
         valor = v
-        tamaño = t
     }
 
 }

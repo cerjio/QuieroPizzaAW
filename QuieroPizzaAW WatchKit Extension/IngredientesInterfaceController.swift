@@ -18,17 +18,28 @@ class IngredientesInterfaceController: WKInterfaceController {
     
     var ingredientesSeleccionados: [String] = []
     
-    var tamaño : String? = nil
-    var tipoMasa : String? = nil
-    var tipoQueso : String? = nil
+    
+    var valorContexto : Orden? = nil
+    var nombreControlador : String = "Confirmacion"
+
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        let c = context as! TipoQueso
-        tamaño = c.tamaño
-        tipoMasa = c.tipoMasa
-        tipoQueso = c.descripcion
+        
+        if context != nil {
+            
+            let c : Orden? = (context as! Orden)
+            
+            if c != nil {
+                valorContexto = c
+                
+                if !(c?.nombreControlador)!.isEmpty {
+                    nombreControlador = (c?.nombreControlador)!
+                }
+                
+            }
+        }
         
         loadTableData()
         // Configure interface objects here.
@@ -50,8 +61,9 @@ class IngredientesInterfaceController: WKInterfaceController {
         for(index, ingrediente) in ingredientes.enumerate() {
             
             let row = tablaIngredientes.rowControllerAtIndex(index) as! IngredientesRow
-            row.imagen.setImage(UIImage(named: "unchecked"))
+            row.imagen.setImage(UIImage(named: "unchecked-32"))
             row.etiqueta.setText(ingrediente)
+           
             
             
         }
@@ -76,9 +88,11 @@ class IngredientesInterfaceController: WKInterfaceController {
     
     @IBAction func preConfirmar() {
         
-        let valorContexto = Ingredientes(ingreSel: ingredientesSeleccionados, v: ingredientesSeleccionados, t: tamaño!, tm: tipoMasa!, tq: tipoQueso!)
-
-        pushControllerWithName("Confirmacion", context: valorContexto)
+        
+        valorContexto = Orden(tamaño: valorContexto?.tamaño
+            , masa: valorContexto?.masa, queso: valorContexto?.queso, ingredientes: Ingredientes(ingreSel: ingredientesSeleccionados, v: ingredientesSeleccionados), nombreControlador: "")
+        
+        pushControllerWithName(nombreControlador, context: valorContexto)
 
         
     }

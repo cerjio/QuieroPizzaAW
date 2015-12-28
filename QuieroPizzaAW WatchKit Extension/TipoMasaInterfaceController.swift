@@ -11,37 +11,34 @@ import Foundation
 
 
 class TipoMasaInterfaceController: WKInterfaceController {
-    
-    @IBOutlet var tipoMasa: WKInterfacePicker!
-    
-    var tamaño : String? = nil
-    
-    var listaTipoMasa: [(String, String)] = [
-        ("Delgada", "D"),
-        ("Crujiente", "C"),
-        ("Gruesa", "G")
-    ]
-    
-    var tipoMasaSeleccionada : (String, String)? = nil
+
+    var valorContexto : Orden? = nil
+    var masaSeleccionada : String = ""
+    var nombreControlador : String = "TipoQueso"
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        let c = context as! Taman_o
-        
-        tamaño = c.descripcion
-        
-        let pickerItems :[WKPickerItem] = listaTipoMasa.map{
-            let pickerItem = WKPickerItem()
+        if context != nil {
             
-            pickerItem.title = $0.0
-            pickerItem.caption = $0.1
+            let c : Orden? = (context as! Orden)
             
-            return pickerItem
+            if c != nil {
+                valorContexto = c
+                
+                if !(c?.nombreControlador)!.isEmpty {
+                    nombreControlador = (c?.nombreControlador)!
+                }
+                
+            }
+            
+        } else {
+            
+            valorContexto?.queso = nil
+            valorContexto?.ingredientes = nil
         }
-        tipoMasa.setItems(pickerItems)
-        tipoMasa.setSelectedItemIndex(0)
-        tipoMasaSeleccionada = listaTipoMasa[0]
+
+
         
         
         // Configure interface objects here.
@@ -57,18 +54,33 @@ class TipoMasaInterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
     
-    @IBAction func pickerSelectedItemChanged(value: Int) {
-         tipoMasaSeleccionada = listaTipoMasa[value]
+    @IBAction func masaDelgada() {
+       masaSeleccionada = "Delgada"
+        transitarPantalla()
     }
-    @IBAction func seleccionarTipoQueso() {
-        var valorContexto : AnyObject? = nil
-        if(tipoMasaSeleccionada != nil) {
-            
-            valorContexto = TipoMasa(d: tipoMasaSeleccionada!.0, v: tipoMasaSeleccionada!.1, t: tamaño!)
-        }
-        pushControllerWithName("TipoQueso", context: valorContexto)
+    
+    @IBAction func masaCrujiente() {
 
+        masaSeleccionada = "Crujiente"
+        transitarPantalla()
         
     }
+   
+    @IBAction func masaGruesa() {
+        masaSeleccionada = "Gruesa"
+        transitarPantalla()
+    }
+    
+    
+    func transitarPantalla() {
+        
+        if(!masaSeleccionada.isEmpty) {
+            
+            valorContexto = Orden(tamaño: valorContexto?.tamaño
+                , masa: TipoMasa(d: masaSeleccionada, v: masaSeleccionada), queso: valorContexto?.queso, ingredientes: valorContexto?.ingredientes, nombreControlador: "")        }
+        pushControllerWithName(nombreControlador, context: valorContexto)
+        
+    }
+
 
 }

@@ -28,6 +28,12 @@
 		DEC357521C2C7A6F00BF0CD9 /* IngredientesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC357511C2C7A6F00BF0CD9 /* IngredientesRow.swift */; settings = {ASSET_TAGS = (); }; };
 		DEC357541C2CA01E00BF0CD9 /* Ingredientes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC357531C2CA01E00BF0CD9 /* Ingredientes.swift */; settings = {ASSET_TAGS = (); }; };
 		DEC357561C2CA47C00BF0CD9 /* ConfirmacionInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC357551C2CA47C00BF0CD9 /* ConfirmacionInterfaceController.swift */; settings = {ASSET_TAGS = (); }; };
+		DEFA06051C3105B000AFEDBF /* gold-pizza-64.png in Resources */ = {isa = PBXBuildFile; fileRef = DEFA06041C3105B000AFEDBF /* gold-pizza-64.png */; settings = {ASSET_TAGS = (); }; };
+		DEFA06071C31062F00AFEDBF /* InicioInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFA06061C31062F00AFEDBF /* InicioInterfaceController.swift */; settings = {ASSET_TAGS = (); }; };
+		DEFA06091C31145F00AFEDBF /* CambioOrdenInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFA06081C31145F00AFEDBF /* CambioOrdenInterfaceController.swift */; settings = {ASSET_TAGS = (); }; };
+		DEFA060B1C31164400AFEDBF /* Orden.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFA060A1C31164400AFEDBF /* Orden.swift */; settings = {ASSET_TAGS = (); }; };
+		DEFA060D1C31289000AFEDBF /* unchecked-32.png in Resources */ = {isa = PBXBuildFile; fileRef = DEFA060C1C31289000AFEDBF /* unchecked-32.png */; settings = {ASSET_TAGS = (); }; };
+		DEFA060F1C318CFD00AFEDBF /* PedidoInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFA060E1C318CFD00AFEDBF /* PedidoInterfaceController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +104,12 @@
 		DEC357511C2C7A6F00BF0CD9 /* IngredientesRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientesRow.swift; sourceTree = "<group>"; };
 		DEC357531C2CA01E00BF0CD9 /* Ingredientes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredientes.swift; sourceTree = "<group>"; };
 		DEC357551C2CA47C00BF0CD9 /* ConfirmacionInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmacionInterfaceController.swift; sourceTree = "<group>"; };
+		DEFA06041C3105B000AFEDBF /* gold-pizza-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gold-pizza-64.png"; path = "Assets.xcassets/splash.imageset/gold-pizza-64.png"; sourceTree = "<group>"; };
+		DEFA06061C31062F00AFEDBF /* InicioInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InicioInterfaceController.swift; sourceTree = "<group>"; };
+		DEFA06081C31145F00AFEDBF /* CambioOrdenInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CambioOrdenInterfaceController.swift; sourceTree = "<group>"; };
+		DEFA060A1C31164400AFEDBF /* Orden.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orden.swift; sourceTree = "<group>"; };
+		DEFA060C1C31289000AFEDBF /* unchecked-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "unchecked-32.png"; path = "Assets.xcassets/unchecked.imageset/unchecked-32.png"; sourceTree = "<group>"; };
+		DEFA060E1C318CFD00AFEDBF /* PedidoInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedidoInterfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +166,7 @@
 		DE4913411C2B46630098A166 /* QuieroPizzaAW WatchKit App */ = {
 			isa = PBXGroup;
 			children = (
+				DEFA06031C31055900AFEDBF /* images */,
 				DE4913421C2B46630098A166 /* Interface.storyboard */,
 				DE4913451C2B46630098A166 /* Assets.xcassets */,
 				DE4913471C2B46630098A166 /* Info.plist */,
@@ -177,8 +190,21 @@
 				DEC357511C2C7A6F00BF0CD9 /* IngredientesRow.swift */,
 				DEC357531C2CA01E00BF0CD9 /* Ingredientes.swift */,
 				DEC357551C2CA47C00BF0CD9 /* ConfirmacionInterfaceController.swift */,
+				DEFA06061C31062F00AFEDBF /* InicioInterfaceController.swift */,
+				DEFA06081C31145F00AFEDBF /* CambioOrdenInterfaceController.swift */,
+				DEFA060A1C31164400AFEDBF /* Orden.swift */,
+				DEFA060E1C318CFD00AFEDBF /* PedidoInterfaceController.swift */,
 			);
 			path = "QuieroPizzaAW WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		DEFA06031C31055900AFEDBF /* images */ = {
+			isa = PBXGroup;
+			children = (
+				DEFA060C1C31289000AFEDBF /* unchecked-32.png */,
+				DEFA06041C3105B000AFEDBF /* gold-pizza-64.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +320,8 @@
 			files = (
 				DE4913461C2B46630098A166 /* Assets.xcassets in Resources */,
 				DE4913441C2B46630098A166 /* Interface.storyboard in Resources */,
+				DEFA06051C3105B000AFEDBF /* gold-pizza-64.png in Resources */,
+				DEFA060D1C31289000AFEDBF /* unchecked-32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,17 +349,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEFA060B1C31164400AFEDBF /* Orden.swift in Sources */,
 				DEC3574A1C2C630F00BF0CD9 /* TipoMasa.swift in Sources */,
 				DEC3574E1C2C690100BF0CD9 /* TipoQueso.swift in Sources */,
+				DEFA06071C31062F00AFEDBF /* InicioInterfaceController.swift in Sources */,
 				DEC357541C2CA01E00BF0CD9 /* Ingredientes.swift in Sources */,
 				DEC357461C2C48D100BF0CD9 /* TipoMasaInterfaceController.swift in Sources */,
 				DE4913541C2B46640098A166 /* ExtensionDelegate.swift in Sources */,
 				DEC3574C1C2C64AE00BF0CD9 /* TipoQuesoInterfaceController.swift in Sources */,
+				DEFA06091C31145F00AFEDBF /* CambioOrdenInterfaceController.swift in Sources */,
 				DEC357521C2C7A6F00BF0CD9 /* IngredientesRow.swift in Sources */,
 				DE4913521C2B46640098A166 /* InterfaceController.swift in Sources */,
 				DEC357561C2CA47C00BF0CD9 /* ConfirmacionInterfaceController.swift in Sources */,
 				DEC357501C2C6D6100BF0CD9 /* IngredientesInterfaceController.swift in Sources */,
 				DEC357481C2C4AD400BF0CD9 /* Tamaño.swift in Sources */,
+				DEFA060F1C318CFD00AFEDBF /* PedidoInterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
